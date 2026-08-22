@@ -2,6 +2,7 @@
 depot_tools/
 chromium/
 out/
+thorium/
 
 # OS specific files
 .DS_Store

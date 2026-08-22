@@ -81,6 +81,12 @@ printf "${GRE}Chromium source root is: $CR_SRC_DIR${c0}\n\n"
 # 6. Apply Thorium optimizations to the iOS Chromium tree
 printf "${YEL}Applying Thorium ARM64 configurations...${c0}\n"
 
+# Clone Thorium patches repository if not present
+if [ ! -d "$WORK_DIR/thorium" ]; then
+    printf "${YEL}Cloning Thorium patches repository...${c0}\n"
+    git clone --depth 1 https://github.com/Alex313031/thorium.git "$WORK_DIR/thorium" || die "Failed to clone Thorium"
+fi
+
 # Copy Thorium's ARM optimizations over the standard arm.gni
 if [ -f "$WORK_DIR/thorium/arm/mac_arm.gni" ]; then
     cp -v "$WORK_DIR/thorium/arm/mac_arm.gni" "$CR_SRC_DIR/build/config/arm.gni" || die "Failed to copy arm.gni"
