@@ -1,0 +1,8 @@
+# Ignore large directories generated during build setup
+depot_tools/
+chromium/
+out/
+
+# OS specific files
+.DS_Store
+Thumbs.db

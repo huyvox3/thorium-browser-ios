@@ -1,0 +1,63 @@
+# GN build arguments for Thorium-optimized Chromium for iOS
+# Copy these arguments when running `gn args out/Release-iphoneos`
+
+# Core target parameters
+target_os = "ios"
+target_cpu = "arm64"
+v8_target_cpu = "arm64"
+
+# Set to true if you want to use the experimental Blink engine on iOS instead of Apple's WebKit wrapper.
+# NOTE: Blink-on-iOS is highly experimental and currently not allowed on the global App Store (except under EU regulatory exceptions).
+use_blink = false
+
+# Enable system Xcode for toolchain resolution on macOS
+use_system_xcode = true
+
+# Release & Optimization Flags
+is_official_build = true
+is_debug = false
+dcheck_always_on = false
+exclude_unwind_tables = true
+disable_fieldtrial_testing_config = true
+enable_reporting = false
+is_component_build = false
+optimize_webui = true
+
+# Compiler Flags & Diagnostics
+treat_warnings_as_errors = false
+symbol_level = 0
+v8_symbol_level = 0
+blink_symbol_level = 0
+
+# Link-Time Optimization (LTO)
+use_thin_lto = true
+thin_lto_enable_optimizations = true
+thin_lto_enable_cache = false
+use_icf = true
+
+# V8 Engine Speed Optimizations
+v8_enable_builtins_optimization = true
+v8_enable_maglev = true
+v8_enable_turbofan = true
+v8_enable_fast_torque = true
+use_v8_context_snapshot = true
+
+# Media & Codecs
+proprietary_codecs = true
+ffmpeg_branding = "Chrome"
+use_webaudio_pffft = true
+rtc_use_h264 = true
+rtc_use_h265 = true
+rtc_build_with_neon = true
+rtc_build_examples = false
+
+# Disable unused features to reduce binary size and improve load speed
+enable_nacl = false
+enable_vr = false
+enable_discovery = false
+enable_hangout_services_extension = false
+
+# Profile-Guided Optimization (PGO)
+# Set chrome_pgo_phase = 0 during initial developer testing.
+# Set chrome_pgo_phase = 2 and provide a valid pgo_data_path if you have pre-profiled data.
+chrome_pgo_phase = 0
